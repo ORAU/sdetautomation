@@ -1,6 +1,8 @@
 package com.selenium.docker.pages.flightreservation;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -17,4 +19,10 @@ public abstract class AbstractPage {
     }
 
     public abstract boolean isAt();
+    public void focusAndClickOnElement(WebElement element,long seconds){
+        Actions actions = new Actions(this.driver,Duration.ofSeconds(seconds));
+        actions.moveToElement(element).perform();
+        actions.click(element).perform();
+    }
+
 }

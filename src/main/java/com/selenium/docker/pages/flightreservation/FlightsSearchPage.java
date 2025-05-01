@@ -2,9 +2,12 @@ package com.selenium.docker.pages.flightreservation;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+
+import java.time.Duration;
 
 public class FlightsSearchPage extends AbstractPage{
 
@@ -22,8 +25,7 @@ public class FlightsSearchPage extends AbstractPage{
         selector.selectByValue(numberOfPassengers);
     }
     public void searchFlights(){
-        this.sel_search_flights.click();
-
+        focusAndClickOnElement(this.sel_search_flights,5);
     }
     @Override
     public boolean isAt() {

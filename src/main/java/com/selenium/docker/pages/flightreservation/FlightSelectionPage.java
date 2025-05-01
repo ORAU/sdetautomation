@@ -30,11 +30,13 @@ public class FlightSelectionPage extends AbstractPage {
     public void selectFlights(){
 
         int random= ThreadLocalRandom.current().nextInt(0,this.departureFlightOptions.size());
-        this.departureFlightOptions.get(random);
-        this.arrivalFlightOptions.get(random);
+        focusAndClickOnElement(this.departureFlightOptions.get(random),5);
+        focusAndClickOnElement(this.arrivalFlightOptions.get(random),5);
+
+
     }
     public void confirmAction(){
-
-        this.confirmFlightsButton.click();
+        focusAndClickOnElement(this.confirmFlightsButton,5);
+        //this.confirmFlightsButton.click();
     }
 }

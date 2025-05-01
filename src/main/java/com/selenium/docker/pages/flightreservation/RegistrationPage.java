@@ -28,7 +28,7 @@ public class RegistrationPage extends AbstractPage{
     private WebElement txt_city;
     @FindBy(name="zip")
     private WebElement txt_zip;
-    @FindBy(id="registration-btn")
+    @FindBy(id="register-btn")
     private WebElement btn_registration;
 
     public RegistrationPage(WebDriver driver)
