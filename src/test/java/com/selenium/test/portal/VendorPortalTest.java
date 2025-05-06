@@ -3,6 +3,8 @@ package com.selenium.test.portal;
 import com.selenium.docker.portal.DashboardPage;
 import com.selenium.docker.portal.LoginPage;
 import com.selenium.test.base.BaseTest;
+import com.selenium.test.portal.model.VendorPortalTestData;
+import com.selenium.utils.JsonUtil;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -16,11 +18,14 @@ public class VendorPortalTest extends BaseTest {
 
     private LoginPage loginPage;
     private DashboardPage dashboardPage;
+    private VendorPortalTestData testData;
     @BeforeTest
-    public void setupPageObjects(){
+    @Parameters({"testDataPath"})
+    public void setupPageObjects(String testDataPath){
 
         loginPage=new LoginPage(driver);
         dashboardPage=new DashboardPage(driver);
+        testData= JsonUtil.getTestData(testDataPath);
     }
 
     @Test
@@ -28,7 +33,7 @@ public class VendorPortalTest extends BaseTest {
 
         loginPage.goTo("https://d1uh9e7cu07ukd.cloudfront.net/selenium-docker/vendor-app/index.html");
         Assert.assertTrue(loginPage.isAt());
-        loginPage.logIn("sam","sam");
+        loginPage.logIn(testData.username(),testData.password());
 
     }
 
@@ -36,12 +41,12 @@ public class VendorPortalTest extends BaseTest {
     public void dashboardTest(){
 
         Assert.assertTrue(dashboardPage.isAt());
-        Assert.assertEquals(dashboardPage.getMonthlyEarning(),"$40,000");
-        Assert.assertEquals(dashboardPage.getAnnualEarning(),"$215,000");
-        Assert.assertEquals(dashboardPage.getProfitMargin(),"50%");
-        Assert.assertEquals(dashboardPage.getAvailableInventory(),"18");
-        dashboardPage.searchOrderHistoryBy("adams");
-        Assert.assertEquals(dashboardPage.getSearchResultsCount(),8);
+        Assert.assertEquals(dashboardPage.getMonthlyEarning(),testData.MonthlyEarning());
+        Assert.assertEquals(dashboardPage.getAnnualEarning(),testData.AnnualEarning());
+        Assert.assertEquals(dashboardPage.getProfitMargin(),testData.ProfitMargin());
+        Assert.assertEquals(dashboardPage.getAvailableInventory(),testData.AvailableInventory());
+        dashboardPage.searchOrderHistoryBy(testData.searchKeyword());
+        Assert.assertEquals(dashboardPage.getSearchResultsCount(),testData.SearchResultsCount());
 
     }
     @Test(dependsOnMethods = "dashboardTest")

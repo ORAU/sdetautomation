@@ -1,0 +1,20 @@
+<suite name="user-tests">
+    <test name="test-1-sam">
+        <parameter name="testDataPath" value="test-data/vendor-portal/data.json"/>
+        <classes>
+            <class name="com.selenium.test.portal.VendorPortalTest"/>
+        </classes>
+    </test>
+    <test name="test-2-john">
+        <parameter name="testDataPath" value="test-data/vendor-portal/john_data.json"/>
+        <classes>
+            <class name="com.selenium.test.portal.VendorPortalTest"/>
+        </classes>
+    </test>
+    <test name="test-3-mike">
+        <parameter name="testDataPath" value="test-data/vendor-portal/mike_data.json"/>
+        <classes>
+            <class name="com.selenium.test.portal.VendorPortalTest"/>
+        </classes>
+    </test>
+</suite>
