@@ -2,6 +2,7 @@ package com.selenium.test.portal;
 
 import com.selenium.docker.portal.DashboardPage;
 import com.selenium.docker.portal.LoginPage;
+import com.selenium.test.base.BaseTest;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -11,15 +12,13 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-public class VendorPortalTest {
-    private WebDriver driver;
+public class VendorPortalTest extends BaseTest {
+
     private LoginPage loginPage;
     private DashboardPage dashboardPage;
     @BeforeTest
-    public void setDriver(){
-        WebDriverManager.chromedriver().setup();
-        this.driver=new ChromeDriver();
-        this.driver.manage().window().maximize();
+    public void setupPageObjects(){
+
         loginPage=new LoginPage(driver);
         dashboardPage=new DashboardPage(driver);
     }
@@ -51,9 +50,5 @@ public class VendorPortalTest {
         dashboardPage.logout();
         Assert.assertTrue(loginPage.isAt());
     }
-    @AfterTest
-    public void endingTest() {
 
-        this.driver.quit();
-    }
 }
