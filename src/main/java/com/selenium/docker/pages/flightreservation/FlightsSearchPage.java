@@ -20,9 +20,9 @@ public class FlightsSearchPage extends AbstractPage{
     @FindBy(id="search-flights")
     private WebElement sel_search_flights;
 
-    public void select_passengers(String numberOfPassengers){
+    public void select_passengers(int numberOfPassengers){
       Select selector= new Select(this.sel_passengers_select);
-        selector.selectByValue(numberOfPassengers);
+        selector.selectByValue(Integer.toString(numberOfPassengers));
     }
     public void searchFlights(){
         focusAndClickOnElement(this.sel_search_flights,5);

@@ -1,0 +1,28 @@
+<suite name="passengers-count-1-4" thread-count="2" parallel="tests">
+
+    <test name="test-1-passenger">
+        <parameter name="testDataPath" value="data-flight-reservation/passengers-1.json"/>
+        <classes>
+            <class name="com.selenium.test.flights.reservation.FlightReservationVersion2Test"/>
+        </classes>
+    </test>
+
+    <test name="test-2-passenger">
+        <parameter name="testDataPath" value="data-flight-reservation/passengers-2.json"/>
+        <classes>
+            <class name="com.selenium.test.flights.reservation.FlightReservationVersion2Test"/>
+        </classes>
+    </test>
+    <test name="test-3-passenger">
+        <parameter name="testDataPath" value="data-flight-reservation/passengers-3.json"/>
+        <classes>
+            <class name="com.selenium.test.flights.reservation.FlightReservationVersion2Test"/>
+        </classes>
+    </test>
+    <test name="test-4-passenger">
+        <parameter name="testDataPath" value="data-flight-reservation/passengers-4.json"/>
+        <classes>
+            <class name="com.selenium.test.flights.reservation.FlightReservationVersion2Test"/>
+        </classes>
+    </test>
+</suite>

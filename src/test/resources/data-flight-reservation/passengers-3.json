@@ -1,0 +1,11 @@
+{
+  "firstName": "Scarlett",
+  "lastName": "Johanson",
+  "email": "scarlett@mail.com",
+  "password": "scarlett",
+  "street": "123 street",
+  "city": "Atlanta",
+  "zip": "3001",
+  "passengersCount": 3,
+  "expectedPrice": "$1753 USD"
+}

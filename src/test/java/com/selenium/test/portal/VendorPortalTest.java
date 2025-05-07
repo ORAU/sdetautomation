@@ -25,7 +25,7 @@ public class VendorPortalTest extends BaseTest {
 
         loginPage=new LoginPage(driver);
         dashboardPage=new DashboardPage(driver);
-        testData= JsonUtil.getTestData(testDataPath);
+        testData= JsonUtil.getTestData(testDataPath,VendorPortalTestData.class);
     }
 
     @Test

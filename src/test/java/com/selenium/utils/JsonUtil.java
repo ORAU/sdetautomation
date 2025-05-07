@@ -11,7 +11,9 @@ import java.io.InputStream;
 public class JsonUtil {
     private static final Logger log= LoggerFactory.getLogger(JsonUtil.class);
     private static final ObjectMapper mapper = new ObjectMapper();
-    public static VendorPortalTestData getTestData (String path){
+
+    //Versión estática
+    /*public static VendorPortalTestData getTestData (String path){
     try(InputStream stream=ResourceLoader.getResources(path)){
         return mapper.readValue(stream, VendorPortalTestData.class);
     } catch (Exception e) {
@@ -19,5 +21,16 @@ public class JsonUtil {
 
     }
     return null;
+    }*/
+    //versión dinámica
+
+    public static <T>T getTestData (String path,Class <T> type){
+        try(InputStream stream=ResourceLoader.getResources(path)){
+            return mapper.readValue(stream, type);
+        } catch (Exception e) {
+            log.error("Unable to read path: {}" , path);
+
+        }
+        return null;
     }
 }

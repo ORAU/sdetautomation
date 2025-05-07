@@ -27,4 +27,6 @@
             <class name="com.selenium.test.flights.reservation.FlightReservationTest"/>
         </classes>
     </test>
+
+
 </suite>

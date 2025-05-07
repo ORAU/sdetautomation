@@ -1,0 +1,11 @@
+{
+  "firstName": "Armin",
+  "lastName": "Van Buuren",
+  "email": "armin@mail.com",
+  "password": "armin",
+  "street": "123 street",
+  "city": "Atlanta",
+  "zip": "3001",
+  "passengersCount": 4,
+  "expectedPrice": "$2338 USD"
+}
