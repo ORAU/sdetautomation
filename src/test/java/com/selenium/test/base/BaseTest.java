@@ -1,5 +1,6 @@
 package com.selenium.test.base;
 
+import com.selenium.utils.ResourceLoader;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.WebDriver;
@@ -7,6 +8,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 
@@ -16,16 +19,20 @@ import java.net.URL;
 public abstract class BaseTest {
 
     protected WebDriver driver;
-
+    private static final Logger log= LoggerFactory.getLogger(ResourceLoader.class);
     @BeforeTest
     public void setup(){
 
         if(Boolean.getBoolean("selenium.grid.enabled")){
             this.driver=remoteSetup();
+            log.info("Se ejecutó: remoteSetup");
         }else{
             this.driver=setupLocalWebdriver();
+            log.info("Se ejecutó: setupLocalWebdriver");
         }
         this.driver.manage().window().maximize();
+
+
     }
 
     /**
