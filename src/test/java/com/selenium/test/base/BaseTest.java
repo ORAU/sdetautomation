@@ -43,9 +43,11 @@ public abstract class BaseTest {
         Capabilities capabilities;
         if(System.getProperty("browser").equalsIgnoreCase("chrome")){
             capabilities=new ChromeOptions();
+            log.info("Navegador chrome creado");
         }
         else{
             capabilities=new FirefoxOptions();
+            log.info("Navegador firefox creado");
         }
         try {
             return new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"),capabilities);
