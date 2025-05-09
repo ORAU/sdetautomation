@@ -4,6 +4,8 @@ import com.selenium.docker.portal.DashboardPage;
 import com.selenium.docker.portal.LoginPage;
 import com.selenium.test.base.BaseTest;
 import com.selenium.test.portal.model.VendorPortalTestData;
+import com.selenium.utils.Config;
+import com.selenium.utils.Constants;
 import com.selenium.utils.JsonUtil;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
@@ -31,7 +33,7 @@ public class VendorPortalTest extends BaseTest {
     @Test
     public void loginTest(){
 
-        loginPage.goTo("https://d1uh9e7cu07ukd.cloudfront.net/selenium-docker/vendor-app/index.html");
+        loginPage.goTo(Config.getConfigurationProperty(Constants.VENDORPORTAL_URL));
         Assert.assertTrue(loginPage.isAt());
         loginPage.logIn(testData.username(),testData.password());
 

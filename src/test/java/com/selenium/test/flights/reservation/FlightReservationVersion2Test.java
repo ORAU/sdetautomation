@@ -4,6 +4,8 @@ import com.selenium.docker.pages.flightreservation.*;
 import com.selenium.test.base.BaseTest;
 import com.selenium.test.flights.reservation.model.FlightReservationTestData;
 import com.selenium.test.portal.model.VendorPortalTestData;
+import com.selenium.utils.Config;
+import com.selenium.utils.Constants;
 import com.selenium.utils.JsonUtil;
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
@@ -23,7 +25,7 @@ public class FlightReservationVersion2Test extends BaseTest {
     public void userRegistrationTest(){
 
         RegistrationPage registrationPage=new RegistrationPage(driver);
-        registrationPage.goTo("https://d1uh9e7cu07ukd.cloudfront.net/selenium-docker/reservation-app/index.html");
+        registrationPage.goTo(Config.getConfigurationProperty(Constants.FLIGHTRESERVATION_URL));
         Assert.assertTrue(registrationPage.isAt());
         registrationPage.enterUserDetails(testData.firstName(),testData.lastName());
         registrationPage.enterCredentials(testData.email(),testData.password());
