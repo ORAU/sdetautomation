@@ -2,6 +2,7 @@ package com.selenium.test.flights.reservation;
 
 import com.selenium.docker.pages.flightreservation.*;
 import com.selenium.test.base.BaseTest;
+import com.selenium.test.base.BaseTestRefactorized;
 import com.selenium.test.flights.reservation.model.FlightReservationTestData;
 import com.selenium.test.portal.model.VendorPortalTestData;
 import com.selenium.utils.Config;
@@ -12,7 +13,7 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-public class FlightReservationVersion2Test extends BaseTest {
+public class FlightReservationVersion2Test extends BaseTestRefactorized {
 
     private String expectedPrice;
     private FlightReservationTestData testData;

@@ -3,6 +3,7 @@ package com.selenium.test.portal;
 import com.selenium.docker.portal.DashboardPage;
 import com.selenium.docker.portal.LoginPage;
 import com.selenium.test.base.BaseTest;
+import com.selenium.test.base.BaseTestRefactorized;
 import com.selenium.test.portal.model.VendorPortalTestData;
 import com.selenium.utils.Config;
 import com.selenium.utils.Constants;
@@ -16,7 +17,7 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-public class VendorPortalTest extends BaseTest {
+public class VendorPortalTest extends BaseTestRefactorized {
 
     private LoginPage loginPage;
     private DashboardPage dashboardPage;
