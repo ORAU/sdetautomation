@@ -36,6 +36,7 @@ public abstract class BaseTestRefactorized {
         //Boolean.getBoolean("selenium.grid.enabled"))
         //this.driver=(Boolean.getBoolean(Constants.SELENIUM_GRID_ENABLED))? remoteSetup() : setupLocalWebdriver();
         if(Boolean.getBoolean(Constants.SELENIUM_GRID_ENABLED)){
+            log.info("Iniciando metodo: remoteSetup");
             this.driver=remoteSetup();
             log.info("Se ejecutó: remoteSetup");
         }else{
@@ -52,17 +53,35 @@ public abstract class BaseTestRefactorized {
      * **/
     private WebDriver remoteSetup()  {
 
-        Capabilities capabilities=new ChromeOptions();
+        Capabilities capabilities;
         //comparar si la propiedad navegador es una en especifico
 
-        log.info("ChromeOptions default creado");
-        if(Config.getConfigurationProperty(Constants.BROWSER).equalsIgnoreCase(Constants.FIREFOX)){
-            capabilities=new FirefoxOptions();
-            log.info("Navegador firefox creado");
-        }
-        else{
+//        log.info("ChromeOptions default creado");
+//        if(Config.getConfigurationProperty(Constants.BROWSER).equalsIgnoreCase(Constants.FIREFOX)){
+//            capabilities=new FirefoxOptions();
+//            log.info("Navegador firefox creado");
+//        }
+//        else{
+//            capabilities=new EdgeOptions();
+//            log.info("Navegador edge creado");
+//        }
+        switch(Config.getConfigurationProperty(Constants.BROWSER))
+        {
+            case Constants.CHROME:
+                capabilities=new ChromeOptions();
+                log.info("Navegador Chrome creado");
+                break;
+            case Constants.FIREFOX:
+                capabilities=new FirefoxOptions();
+                log.info("Navegador firefox creado");
+                break;
+            case Constants.EDGE:
             capabilities=new EdgeOptions();
             log.info("Navegador edge creado");
+            break;
+            default:
+                capabilities=new ChromeOptions();
+
         }
         try {
             String urlFormat= Config.getConfigurationProperty(Constants.SELENIUM_GRID_URLFORMAT);
