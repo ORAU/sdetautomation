@@ -1,0 +1,9 @@
+#ejemplo básico
+mvn -DsuiteFileName="src/test/resources/test-suites/vendor_portal.xml" clean test
+#donde suiteFileName es el nombre del parametro en el archivo pom.xml
+
+#Ejecuta 1 archivo.xml con suite de pruebas
+mvn -Dbrowser=browser -Dselenium-grid-enabled=false -DsuiteFileName="src/test/resources/test-suites/vendor_portal.xml" clean test
+
+#Ejecuta más de 1 archivo.xml con suites de pruebas
+mvn -Dbrowser=browser -Dselenium-grid-enabled=false -DsuiteFileName="src/test/resources/test-suites/flight_reservation_2.xml,src/test/resources/test-suites/vendor_portal.xml" clean test

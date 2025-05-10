@@ -1,6 +1,7 @@
 package com.selenium.test.base;
 
 import com.google.common.util.concurrent.Uninterruptibles;
+import com.selenium.utils.Config;
 import com.selenium.utils.Constants;
 import com.selenium.utils.ResourceLoader;
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -25,9 +26,13 @@ public abstract class BaseTest {
     protected WebDriver driver;
     private static final Logger log= LoggerFactory.getLogger(ResourceLoader.class);
     @BeforeTest
+    public void callingInitializeProperties(){
+        Config.initializeProperties();
+    }
+    @BeforeTest
     public void setup(){
 
-        if(Boolean.getBoolean("selenium.grid.enabled")){
+        if(Boolean.getBoolean("selenium-grid-enabled")){
             this.driver=remoteSetup();
             log.info("Se ejecutó: remoteSetup");
         }else{
@@ -76,7 +81,16 @@ public abstract class BaseTest {
     @BeforeMethod
     public void sleepTime(){
 
-        Uninterruptibles.sleepUninterruptibly(Duration.ofSeconds(Integer.parseInt(Constants.SLEEP_TIME)));
-        log.info("Sleeping time: {}",Integer.parseInt(Constants.SLEEP_TIME));
+        try {
+            long sleepTime = Long.parseLong(Config.getConfigurationProperty(Constants.SLEEP_TIME));
+            Uninterruptibles.sleepUninterruptibly(Duration.ofSeconds(sleepTime));
+            log.info("Sleeping time fue configurado correctamente: {}",sleepTime);
+        } catch (NumberFormatException e) {
+            System.err.println("ERROR: SLEEP_TIME debe ser un número entero válido.");
+            // Opcional: Usar un valor por defecto
+            Uninterruptibles.sleepUninterruptibly(Duration.ofSeconds(3));
+            log.info("Sleeping time no fue configurado correctamente");
+        }
+
     }
 }
