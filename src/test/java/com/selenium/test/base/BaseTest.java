@@ -1,5 +1,7 @@
 package com.selenium.test.base;
 
+import com.google.common.util.concurrent.Uninterruptibles;
+import com.selenium.utils.Constants;
 import com.selenium.utils.ResourceLoader;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.Capabilities;
@@ -11,10 +13,12 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.time.Duration;
 
 public abstract class BaseTest {
 
@@ -68,5 +72,11 @@ public abstract class BaseTest {
     public void endingTest() {
 
         this.driver.quit();
+    }
+    @BeforeMethod
+    public void sleepTime(){
+
+        Uninterruptibles.sleepUninterruptibly(Duration.ofSeconds(Integer.parseInt(Constants.SLEEP_TIME)));
+        log.info("Sleeping time: {}",Integer.parseInt(Constants.SLEEP_TIME));
     }
 }
