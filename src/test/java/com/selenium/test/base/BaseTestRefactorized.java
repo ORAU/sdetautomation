@@ -1,5 +1,6 @@
 package com.selenium.test.base;
 
+import com.selenium.listener.TestListener;
 import com.selenium.utils.Config;
 import com.selenium.utils.Constants;
 import com.selenium.utils.ResourceLoader;
@@ -14,14 +15,17 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.testng.ITestContext;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Listeners;
 
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Properties;
 
+@Listeners({TestListener.class})
 public abstract class BaseTestRefactorized {
 
     protected WebDriver driver;
@@ -31,7 +35,7 @@ public abstract class BaseTestRefactorized {
        Config.initializeProperties();
    }
     @BeforeTest
-    public void setup(){
+    public void setup(ITestContext context){
 
         //Boolean.getBoolean("selenium.grid.enabled"))
         //this.driver=(Boolean.getBoolean(Constants.SELENIUM_GRID_ENABLED))? remoteSetup() : setupLocalWebdriver();
@@ -44,8 +48,8 @@ public abstract class BaseTestRefactorized {
             log.info("Se ejecutó: setupLocalWebdriver");
         }
         this.driver.manage().window().maximize();
-
-
+//Storing current driver
+    context.setAttribute(Constants.DRIVER,this.driver);
     }
 
     /**
