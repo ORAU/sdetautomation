@@ -7,3 +7,57 @@ mvn -Dbrowser=browser -Dselenium-grid-enabled=false -DsuiteFileName="src/test/re
 
 #Ejecuta más de 1 archivo.xml con suites de pruebas
 mvn -Dbrowser=browser -Dselenium-grid-enabled=false -DsuiteFileName="src/test/resources/test-suites/flight_reservation_2.xml,src/test/resources/test-suites/vendor_portal.xml" clean test
+
+#Comando para generar los artefactos .jar sin ejecutar los test scripts:
+
+mvn clean package -DskipTests
+
+#Otros apuntes importantes..
+
+
+#Apuntes del POM.XML
+los plugins:
+maven-dependency-plugin -> Sirve para descargar todos las dependencias configuradas en el archivo pom.xml
+maven-jar-plugin -> sirve para generar los artefactos .jar ( se usarán en los contenedores dockers)
+se puede configurar para omitir ciertos archivos.
+
+maven-resources-plugin -> sirve para copiar archivos (recursos) a un directorio especifico, todos
+estos archivos son recursos que necesita el framework de prueba creado para funcionar correctamente,
+pueden contener archivos de datos,clases utisl,configuracion de archivos test-suites.xml de testng etc,
+
+
+
+En la configuracion del pom.xml, en la sección del plugin maven - jar
+se configuró la generación del jar para que no incluya los archivos de datos dentro del propio .jar
+sino en una carpeta aparte, esto con el objetivo de utilizar dinamicamente
+nuevos archivos de datos para los test y que no sean parte del ejecutable .jar
+
+<executions>
+                    <execution>
+                        <goals>
+                            <goal>test-jar</goal>
+                        </goals>
+                        <configuration>
+                            <includes>**/*.class</includes>
+                        </configuration>
+                    </execution>
+ </executions>
+
+Otro ejemplo para incluir un archivo especifico
+                                 <resource>
+                                    <directory>.</directory>
+                                    <includes>
+                                        <include>otro_archivo.txt</include>
+                                    </includes>
+                                </resource>
+O bien crear un .sh ( archivo batch en linux  o .bat en windows)
+
+linux:
+mvn clean test -DskipTests
+cp otro_archivo.txt target/docker_resources/otro_archivo.txt
+
+windows:
+copy otro_archivo.txt target/docker_resources/otro_archivo.txt
+Nota : "docker_resources" puede ser cualquier nombre y tambien se setea en la etiqueta
+<package.directory>${project.build.directory}/docker-resources</package.directory>
+ del pom.xml  (sección properties)

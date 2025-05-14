@@ -82,13 +82,15 @@
                         <selenium.grid.enabled>false</selenium.grid.enabled>
                     </systemPropertyVariables>
                     <suiteXmlFiles>
-                        <file>${suiteFileName}</file>
-                    </suiteXmlFiles>
-                    <threadCount>1</threadCount>
-                    <reportsDirectory>target/test-output</reportsDirectory>
-                </configuration>
-            </plugin>
-            <!-- To copy all the dependencies to run our tests as part of "mvn package" -->
+            <!-- <file>${suiteFileName}</file>-->
+                        <file>src/test/resources/test-suites/vendor_portal.xml</file>
+                        <file>src/test/resources/test-suites/flight_reservation_2.xml</file>
+        </suiteXmlFiles>
+        <threadCount>1</threadCount>
+        <reportsDirectory>target/test-output</reportsDirectory>
+    </configuration>
+</plugin>
+<!-- To copy all the dependencies to run our tests as part of "mvn package" -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
@@ -121,6 +123,9 @@
                         <goals>
                             <goal>test-jar</goal>
                         </goals>
+                        <configuration>
+                            <includes>**/*.class</includes>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
