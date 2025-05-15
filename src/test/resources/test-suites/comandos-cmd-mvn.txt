@@ -61,3 +61,8 @@ copy otro_archivo.txt target/docker_resources/otro_archivo.txt
 Nota : "docker_resources" puede ser cualquier nombre y tambien se setea en la etiqueta
 <package.directory>${project.build.directory}/docker-resources</package.directory>
  del pom.xml  (sección properties)
+
+#Comando para ejecutar los tests sin usar maven
+
+Ejecutarlos desde java:
+java -cp "libs/*" org.testng.TestNG .\test-suites\vendor_portal.xml
