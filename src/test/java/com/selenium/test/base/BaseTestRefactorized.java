@@ -11,6 +11,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.slf4j.Logger;
@@ -102,8 +103,30 @@ public abstract class BaseTestRefactorized {
     /** Codigo para crear un Chrome Driver*/
     private WebDriver setupLocalWebdriver(){
         WebDriver driver;
-        WebDriverManager.chromedriver().setup();
-        driver=new ChromeDriver();
+
+        switch(Config.getConfigurationProperty(Constants.BROWSER))
+        {
+            case Constants.CHROME:
+                WebDriverManager.chromedriver().setup();
+                driver=new ChromeDriver();
+                log.info("Navegador Chrome creado");
+                break;
+            case Constants.FIREFOX:
+                WebDriverManager.firefoxdriver().setup();
+                driver=new FirefoxDriver();
+                log.info("Navegador firefox creado");
+                break;
+            case Constants.EDGE:
+                WebDriverManager.edgedriver().setup();
+                driver=new EdgeDriver();
+                log.info("Navegador edge creado");
+                break;
+            default:
+                WebDriverManager.chromedriver().setup();
+                driver=new ChromeDriver();
+                log.info("Navegador Chrome creado");
+
+        }
         return driver;
     }
     @AfterTest
