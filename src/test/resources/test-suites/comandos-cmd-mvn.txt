@@ -66,3 +66,10 @@ Nota : "docker_resources" puede ser cualquier nombre y tambien se setea en la et
 
 Ejecutarlos desde java:
 java -cp "libs/*" org.testng.TestNG .\test-suites\vendor_portal.xml
+
+***Volume mapping de la carpeta output ( para extraer el reporte generado por testng)
+docker run -it -v C:\directorio_local\que\quiero\mapear:C:\directorio_trabajo\del\contenedor nombre_de_imagen_docker
+NOta:
+para sistemas linux:
+docker run -it -v {PWD}/nueva_carpeta:/home/path/dentro/del/contenedor nombre_de_imagen_docker
+
