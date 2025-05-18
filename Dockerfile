@@ -1,6 +1,8 @@
 FROM bellsoft/liberica-openjdk-alpine:latest
 #Creación de directorio de trabajo
 WORKDIR /home/selenium-docker-project
+#Se instalará curl y jq para ejecutar el batch que extraera el estado del grid hub y ejecutar luego los test
+RUN apk add curl jq
 ADD target/docker-resources ./
 
 ENTRYPOINT java -cp 'libs/*' \
