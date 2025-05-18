@@ -8,7 +8,7 @@ ADD runner.sh runner.sh
 #Se realiza la llamada del archivo .bash que se encargará de verificar el estado del selenium grid hub
 #si esta listo, entonces luego realizará la ejecución del comando que invoca la llamada de los test cases
 #habiendose creado los contenedores correctamente
-RUN sh runner.sh
+ENTRYPOINT sh runner.sh
 #En caso de no tener ningun script u otro archivo .bash, entonces ejecutar el comando de abajo
 #Se comentó porque arriba ya se ejecuta el comando RUN sh runner.sh :
 #ENTRYPOINT java -cp 'libs/*' \
